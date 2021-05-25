@@ -182,12 +182,12 @@ BOOL APIENTRY DllMain(HMODULE module, DWORD reasonForCall, LPVOID) {
                         if (file.extension().u32string() == U".archive") {
 
                             // Don't move if directly inside archive/pc/content
-                            if (file.parent_path() == archivePcContent) {
+                            if (std::filesystem::equivalent(file.parent_path(), archivePcContent)) {
                                 continue;
                             }
 
                             // Don't move if directly inside archive/pc/mod
-                            if (file.parent_path() == archivePcMod) {
+                            if (std::filesystem::equivalent(file.parent_path(), archivePcMod)) {
                                 continue;
                             }
 
